@@ -1,0 +1,168 @@
+tr:nth-of-type(odd) {
+  background: #eee;
+}
+
+@media only all and (max-width: 768px) {
+  #table2, #table2 thead, #table2 tbody, #table2 th, #table2 td, #table2 tr {
+    display: block;
+  }
+
+  #table2 thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  #table2 tr {
+    border: 1px solid #ccc;
+  }
+
+  #table2 td {
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  #schedule-table td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  #schedule-table td:nth-of-type(1):before {
+    content: "Date";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  #schedule-table td:nth-of-type(2):before {
+    content: "Event";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  #schedule-table td:nth-of-type(3):before {
+    content: "Description";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  #schedule-table td:nth-of-type(4):before {
+    content: "Location";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  #schedule-table td:nth-of-type(5):before {
+    content: "Time";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  tr {
+    font-size: 1.6rem;
+    padding: 0.7em;
+  }
+
+  .section-title {
+    padding-top: 2em;
+    font-size: 4rem;
+  }
+
+  td:not(td:before) {
+    border-bottom: 1px solid gray;
+  }
+
+  #table2 td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+
+  #table2 td:nth-of-type(1):before {
+    content: "Rank";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+  }
+
+  #table2 td:nth-of-type(2):before {
+    content: "Previous Rank";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+  }
+
+  #table2 td:nth-of-type(3):before {
+    content: "Player";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+    height: 5em;
+    display: flex;
+    align-items: center;
+  }
+
+  #table2 td:nth-of-type(4):before {
+    content: "Team";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);    
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+  }
+
+  #table2 td:nth-of-type(5):before {
+    content: "Ranking";
+    background: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    color: white;
+    padding-left: 3em;
+    width: 30%;
+  }
+
+  td img {
+    width: 3em;
+    height: 3em;
+  }
+
+  #table2 td {
+    font-size: 1.6rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+  }
+}
