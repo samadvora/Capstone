@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/ico" href="images/favicon.png" />
-    <title>CricInfo - Home</title>
+    <title>KWC - Home</title>
   </head>
   <body>
     <section id="header">
@@ -234,7 +234,7 @@
           /></a>
         </section>
         <p class="mobile-view">
-          Copyright © 2021 CricInfo. All rights reserved
+          Copyright © 2022 KWC-JOBS. All rights reserved
         </p>
       </div>
 

@@ -228,7 +228,7 @@
           /></a>
         </section>
         <p class="mobile-view">
-          Copyright © 2021 CricInfo. All rights reserved
+          Copyright © 2022 KWC-JOBS. All rights reserved
         </p>
       </div>
 

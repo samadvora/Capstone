@@ -1,64 +1,35 @@
 <?php 
-
-    require('mysqli_connect.php');
-
-    //Check if the server data has been posted using $_SERVER[‘REQUEST_METHOD’]
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    //check if the username and password are both set
-        
-        // if (empty($_POST['username'])) {
-
-        //     $usernameError = 'Username should be filled';
-
-        // } else {
-
-        //     $username = trim(htmlspecialchars($_POST['username']));
-
-        // }
-
-        
-        // if (empty($_POST['password'])) {
-
-        //     $passwordError = 'Password should be filled';
-
-        // } else {
-
-        //     $password = trim(htmlspecialchars($_POST['password']));
-
-        // }
+$servername = "localhost";
+$username = "root";
+$password = '';
+$dbname = "kwcjobs";
+ $con = mysqli_connect($servername, $username, $password, $dbname);
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
 
 
-        $sql = "select * FROM kwcj_employer_registration WHERE username = ? AND password = ?"; 
+$Name = $_POST['Name'];
+$Description = $_POST['Description'];
+$Email = $_POST['Email'];
+$Phone = $_POST['Phone'];
+$City = $_POST['City'];
+$Province = $_POST['Province'];
+$Postal_Code = $_POST['Postal_Code'];
+$Strength = $_POST['Strength'];
 
-        $stmt = $mysqli->prepare($sql); 
 
-        $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
 
-        $stmt->execute();
+// database insert SQL code
+$sql = "INSERT INTO `kwcj_employers`(`Name`, `Description`, `City`, `Province`, `Postal_Code`, `Strength`, `Email`, `Phone_Number`) VALUES ('$Name','$Description','$City','$Province','$Postal_Code','$Strength','$Email','$Phone')";
+// insert in database 
+$rs = mysqli_query($con, $sql);
 
-    
-        mysqli_stmt_store_result($stmt);
-
-        if (mysqli_stmt_num_rows($stmt) == 1) {
-
-            header("Location: login_employee_welcome.php"); 
-        }
-
-        else {
-
-            
-
-            echo "Incorrect account information. Please try again!";
-
-        }
-
-        }
-
-    
-
-    ?>
+if($rs)
+{
+  echo " Records Inserted";
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <!-- Head -->
@@ -67,11 +38,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link rel="icon" type="image/ico" href="images/favicon.png" />
-    <title>CricInfo</title>
+    <title>KWC-Employee_Profile</title>
   </head>
   <body>
-    <!-- Header -->
-     <section id="header">
+    <section id="header">
       <div class="header container">
       <h1><span>K</span>WC <span>J</span>obs</h1>
 
@@ -84,7 +54,9 @@
               <div class="bar"></div>
             </div>
             <ul>
-             <li><a href="index.php" class="current-page">Home</a></li>
+           
+              <!-- Student View -->
+              <li><a href="index.php" class="current-page">Home</a></li>
               <li><a href="news.php">Profile</a></li>
               <li><a href="schedule.php">Job Postings</a></li>
               <li><a href="rankings.php">Applied Jobs</a></li>
@@ -96,40 +68,79 @@
       </div>
     </section>
     <main>
-      <form id="form1" method="POST" name="form"  action="employee_login_page.php" >
-        <fieldset>
-          <legend>Employee Login Form</legend>
-          <div id="signin">
-            <label for="myEmail" class="email">Username:</label>
-            <input
-              type="text"
-              name="username"
-              id="myEmail"
-              class="inputbox email"
-              required
-              value="<?php if (isset($username)) echo $username; ?>"
-            />
-            <!-- <span class="error"><?php if (isset($usernameError)) echo $usernameError ?></span><br><br> -->
-            <label for="password" class="password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              id="pwd"
-              class="inputbox password"
-              required
-              value="<?php if (isset($password)) echo $password; ?>"
-              />
-              <!-- <span class="error"><?php if (isset($passwordError)) echo $passwordError ?></span><br><br> -->
-            <p>New user? <a href="#form2"> Register</a></p>
-          </div>
-        </fieldset>
-        <div class="buttons">
-          <input type="submit" value="Submit" class="press" id="submit1" />
-          <input type="submit" value="Reset" class="press" id="reset2" />
-        </div>
-      </form>
 
-     
+      <form id="form2" method="POST" name="form" action="Employer_Profile.php">
+        <fieldset>
+          <legend>Employer Profile</legend>
+          <label for="Name">First Name:</label>
+          <input
+            type="text"
+            name="Name"
+            id="Name"
+            class="inputbox"
+            required
+          />
+          <label for="Description">Description:</label>
+          <textarea id="Description" name="Description" rows="4" cols="50" class="inputbox" required></textarea>
+          <label for="City">City:</label>
+          <input
+            type="text"
+            name="City"
+            id="City"
+            class="inputbox"
+            required
+          />
+          <label for="Province">Province:</label>
+          <input
+            type="text"
+            name="Province"
+            id="Province"
+            class="inputbox"
+            required
+          />
+
+          <label for="Postal_Code">Postal_Code:</label>
+          <input
+            type="text"
+            name="Postal_Code"
+            id="Postal_Code"
+            class="inputbox"
+            required
+          />
+          <label for="Strength">Strength:</label>
+          <input
+            type="text"
+            name="Strength"
+            id="Strength"
+            class="inputbox"
+            required
+          />
+          <label for="Email">Email:</label>
+          <input
+            type="Email"
+            name="Email"
+            id="Email"
+            class="inputbox"
+            required
+          />
+          <label for="Phone">Phone:</label>
+          <input
+            type="text"
+            name="Phone"
+            id="Phone"
+            placeholder="999-999-9999"
+            class="inputbox"
+            required
+          />
+           <div class="buttons">
+          <input type="submit" value="Submit" class="press" id="submit2" style="margin-left: 50%;" />
+           <input type="submit" value="Reset" class="press" id="reset2" />
+        </div>
+        </fieldset>
+
+        
+       
+      </form>
     </main>
     <!-- Footer -->
     <section id="footer">

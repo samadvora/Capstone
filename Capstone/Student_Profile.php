@@ -1,64 +1,33 @@
-<?php 
-
-    require('mysqli_connect.php');
-
-    //Check if the server data has been posted using $_SERVER[‘REQUEST_METHOD’]
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    //check if the username and password are both set
-        
-        // if (empty($_POST['username'])) {
-
-        //     $usernameError = 'Username should be filled';
-
-        // } else {
-
-        //     $username = trim(htmlspecialchars($_POST['username']));
-
-        // }
-
-        
-        // if (empty($_POST['password'])) {
-
-        //     $passwordError = 'Password should be filled';
-
-        // } else {
-
-        //     $password = trim(htmlspecialchars($_POST['password']));
-
-        // }
+<?php
+$servername = "localhost";
+$username = "root";
+$password = '';
+$dbname = "kwcjobs";
+ $con = mysqli_connect($servername, $username, $password, $dbname);
+if ($_SERVER['REQUEST_METHOD'] == 'POST')
+{
 
 
-        $sql = "select * FROM kwcj_employer_registration WHERE username = ? AND password = ?"; 
+$First_Name = $_POST['First_Name'];
+$Last_Name = $_POST['Last_Name'];
+$Email = $_POST['Email'];
+$Phone = $_POST['Phone'];
+$Date_Of_Birth = $_POST['Date_Of_Birth'];
+$Education = $_POST['Education'];
+$Gender_ID = $_POST['Gender_ID'];
 
-        $stmt = $mysqli->prepare($sql); 
 
-        $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
+// database insert SQL code
+$sql = "INSERT INTO `kwcj_students` (`First_Name`, `Last_Name`, `Email`, `Phone`, `Date_Of_Birth`, `Education`, `Gender_ID`) VALUES ('$First_Name','$Last_Name','$Email','$Phone','$Date_Of_Birth','$Education','$Gender_ID')";
+// insert in database 
+$rs = mysqli_query($con, $sql);
 
-        $stmt->execute();
-
-    
-        mysqli_stmt_store_result($stmt);
-
-        if (mysqli_stmt_num_rows($stmt) == 1) {
-
-            header("Location: login_employee_welcome.php"); 
-        }
-
-        else {
-
-            
-
-            echo "Incorrect account information. Please try again!";
-
-        }
-
-        }
-
-    
-
-    ?>
+if($rs)
+{
+  echo " Records Inserted";
+}
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
   <!-- Head -->
@@ -67,11 +36,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <link rel="icon" type="image/ico" href="images/favicon.png" />
-    <title>CricInfo</title>
+    <title>KWC-Student_Profile</title>
   </head>
   <body>
-    <!-- Header -->
-     <section id="header">
+    <section id="header">
       <div class="header container">
       <h1><span>K</span>WC <span>J</span>obs</h1>
 
@@ -84,7 +52,9 @@
               <div class="bar"></div>
             </div>
             <ul>
-             <li><a href="index.php" class="current-page">Home</a></li>
+           
+              <!-- Student View -->
+              <li><a href="index.php" class="current-page">Home</a></li>
               <li><a href="news.php">Profile</a></li>
               <li><a href="schedule.php">Job Postings</a></li>
               <li><a href="rankings.php">Applied Jobs</a></li>
@@ -96,40 +66,78 @@
       </div>
     </section>
     <main>
-      <form id="form1" method="POST" name="form"  action="employee_login_page.php" >
-        <fieldset>
-          <legend>Employee Login Form</legend>
-          <div id="signin">
-            <label for="myEmail" class="email">Username:</label>
-            <input
-              type="text"
-              name="username"
-              id="myEmail"
-              class="inputbox email"
-              required
-              value="<?php if (isset($username)) echo $username; ?>"
-            />
-            <!-- <span class="error"><?php if (isset($usernameError)) echo $usernameError ?></span><br><br> -->
-            <label for="password" class="password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              id="pwd"
-              class="inputbox password"
-              required
-              value="<?php if (isset($password)) echo $password; ?>"
-              />
-              <!-- <span class="error"><?php if (isset($passwordError)) echo $passwordError ?></span><br><br> -->
-            <p>New user? <a href="#form2"> Register</a></p>
-          </div>
-        </fieldset>
-        <div class="buttons">
-          <input type="submit" value="Submit" class="press" id="submit1" />
-          <input type="submit" value="Reset" class="press" id="reset2" />
-        </div>
-      </form>
 
-     
+      <form id="form2" method="POST" name="form" action="Employer_Profile.php">
+        <fieldset>
+          <legend>Student Profile</legend>
+          <label for="First_Name">First Name:</label>
+          <input
+            type="text"
+            name="First_Name"
+            id="First_Name"
+            class="inputbox"
+            required
+          />
+          <label for="Last_Name">Last Name:</label>
+          <input
+            type="text"
+            name="Last_Name"
+            id="Last_Name"
+            class="inputbox"
+            required
+          />
+          <label for="Email">Email:</label>
+          <input
+            type="Email"
+            name="Email"
+            id="Email"
+            class="inputbox"
+            required
+          />
+          <label for="Phone">Phone:</label>
+          <input
+            type="text"
+            name="Phone"
+            id="Phone"
+            placeholder="999-999-9999"
+            class="inputbox"
+            required
+          />
+           <label for="Date_Of_Birth">Date_Of_Birth:</label>
+          <input
+            type="text"
+            name="Date_Of_Birth"
+            id="Date_Of_Birth"
+            class="inputbox"
+            required
+          />
+           <label for="Date_Of_Birth">Education:</label>
+          <input
+            type="text"
+            name="Education"
+            id="Education"
+            class="inputbox"
+            required
+          />
+
+          <select name="Gender_ID" class="inputbox" ;>
+          <option value="none" selected class="inputbox">Gender</option>
+          <option value="1" class="inputbox">Male</option>
+          <option value="2" class="inputbox">Female</option>
+         <option value="3" class="inputbox">Prefer not to Answer</option>
+         </select>
+        
+          <label for="myfile">Upload Your Resume/CV:</label>
+          <input type="file" id="myfile" name="myfile" class="inputbox"></li>
+           <div class="buttons">
+          <input type="submit" value="Submit" class="press" id="submit2" style="margin-left: 50%;" />
+           <input type="submit" value="Reset" class="press" id="reset2" />
+        </div>
+        </fieldset>
+
+        
+       
+      </form>
     </main>
     <!-- Footer -->
     <section id="footer">

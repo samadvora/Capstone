@@ -98,7 +98,7 @@
         <p class="mobile-view thin-fonts">
           <a href="privacy.html">Privacy </a>
           <a href="terms.html">Terms & Conditions</a><br />
-          Copyright © 2021 CricInfo. All rights reserved
+          Copyright © 2022 KWC-JOBS. All rights reserved
         </p>
       </div>
 
