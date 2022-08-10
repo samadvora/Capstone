@@ -1,44 +1,34 @@
-<?php 
-
-    require('mysqli_connect.php');
-
-    //Check if the server data has been posted using $_SERVER[‘REQUEST_METHOD’]
-
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-      $username = mysqli_real_escape_string($xyz, trim($_POST['username']));
-        $password = mysqli_real_escape_string($xyz, trim($_POST['password']));
-
-        $sql = "SELECT * FROM kwcj_students_registration WHERE Username =  ? AND Password =  ?"; 
-
-        $stmt = $xyz->prepare($sql); 
-
-        $stmt->bind_param("ss", $_POST['username'], $_POST['password']);
-        $stmt->execute();
-
-    
-        mysqli_stmt_store_result($stmt);
-
-        if (mysqli_stmt_num_rows($stmt) == 1) {
-
-            header("Location: login_student_welcome.php"); 
-        }
-        elseif(mysqli_stmt_num_rows($stmt) == 0) {
-
+    <?php
+   session_start();
+   ?>
+<?php
+   if(isset($_POST['submit'])){
+   $username= $_POST['username'];
+   $password= $_POST['password'];
+   $psw= md5($password);
+   if(empty($usrename) && empty($password))
+   {
+      echo '<script>alert("Please enter Both the fields")</script>';
+   }
+   else{
+      
+      include "mysqli_connect.php";
+      $query="SELECT * from kwcj_students_registration where Username='$username' AND Password='$psw'";
+      $result= mysqli_query($xyz,$query);
+   
+      if(mysqli_num_rows($result)==1){
+            header('location:Student_Profile.php');
+   
+      }
+      
+      else{
           $Error= "<h2>Incorrect account information. Please try again!</h2>"; 
-
-        }
-
-        else{
-
-          header("Location: student_login_page.php");
-
-        }
-
-        }
-
-    
-
-    ?>
+         
+      }
+      }
+      
+   }
+   ?>
 <!DOCTYPE html>
 <html lang="en">
   <!-- Head -->
@@ -110,7 +100,7 @@
           </div>
         </fieldset>
         <div class="buttons">
-          <input type="submit" value="Submit" class="press" id="submit1" />
+          <input type="submit" value="Submit" name="submit" class="press" id="submit1" />
           <input type="submit" value="Reset" class="press" id="reset2" />
         </div>
       </form>

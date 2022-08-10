@@ -1,34 +1,21 @@
-   <?php
-   session_start();
-   ?>
 <?php
-   if(isset($_POST['submit'])){
-   $username= $_POST['username'];
-   $password= $_POST['password'];
-   $psw= md5($password);
-   if(empty($usrename) && empty($password))
-   {
-      echo '<script>alert("Please enter Both the fields")</script>';
-   }
-   else{
-      
-      include "mysqli_connect.php";
-      $query="SELECT * from kwcj_employer_registration where Username='$username' AND Password='$psw'";
-      $result= mysqli_query($xyz,$query);
-   
-      if(mysqli_num_rows($result)==1){
-            header('location:Employer_Profile.php');
-   
-      }
-      
-      else{
-          $Error= "<h2>Incorrect account information. Please try again!</h2>"; 
-         
-      }
-      }
-      
-   }
-   ?>
+include "mysqli_connect.php";
+if(isset($_POST['submit']))
+{
+$newpass=$_POST["pass"];
+$newpass=md5($newpass);
+$email=$_GET['username'];
+$Changepass=mysqli_query($xyz,"UPDATE kwcj_employer_registration SET  Password='".$newpass."' WHERE username='".$email."'");
+	if($Changepass)
+	{
+		$Error="<h1>Your password has been changed</h1>";
+		header('Refresh:2;url=employee_login_page.php');
+	}
+	else{
+		$Error2=" <h1> Password not changed<h1>";
+	}
+} 
+ ?>
 <!DOCTYPE html>
 <html lang="en">
   <!-- Head -->
@@ -38,11 +25,11 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <!-- <link rel="stylesheet" href="./style1.css"> -->
     <link rel="icon" type="image/ico" href="images/favicon.png" />
-    <title>Employee Login Page</title>
+    <title>Username Verification</title>
   </head>
   <body>
-  <!-- Header -->
-  <section id="header">
+ <!-- Header -->
+ <section id="header">
       <div class="header container">
         <div class="nav-bar">
           <div class="brand">
@@ -70,40 +57,27 @@
       </div>
     </section>
     <main>
-      <form id="form1" method="POST" name="form"  action="employee_login_page.php" >
+      <form id="form1" method="POST" name="form"  action="" >
         <fieldset>
-          <legend>Employee Login Form</legend>
+          <legend>Change Your Password</legend>
           <div id="signin">
-
-         
-            <label for="myEmail" class="email">Username:</label>
-            <input
-              type="text"
-              name="username"
-              id="myEmail"
-              class="inputbox email"
-              required
-              value="<?php if (isset($username)) echo $username; ?>"
-            />
-            <!-- <span class="error"><?php if (isset($usernameError)) echo $usernameError ?></span><br><br> -->
-            <label for="password" class="password">Password:</label>
+            <label for="pass" class="username">Enter new password:</label>
             <input
               type="password"
-              name="password"
+              name="pass"
               id="pwd"
               class="inputbox password"
-              required
-              value="<?php if (isset($password)) echo $password; ?>"
-              /><br><br>
-              <span style="color:red;"><?php if (isset($Error)) echo $Error ?></span>
-            <p>New user? <a href="#form2"> Register</a></p>
-            <p><a onclick="location='Employer_Verification.php'"> Forgot Password ? </a></p>
+              required />
+              <br><br>
+              <span style="color:green;"><?php if (isset($Error)) echo $Error ?></span>
+
           </div>
         </fieldset>
         <div class="buttons">
-          <input type="submit" value="Submit" name="submit" class="press" id="submit1" />
-          <input type="submit" value="Reset" class="press" id="reset2" />
+        <input type="submit" value="Change It" class="press" name="submit" id="submit1" />
+
         </div>
+
       </form>
 
      
@@ -133,6 +107,20 @@
           <div class="brand">
             <h2><span>C</span>ONNECT WITH <span>U</span>S</h2><br>
           </div>
+          <!-- <div class="social-icon">
+            <div class="social-item">
+              <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
+            </div>
+            <div class="social-item">
+              <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
+            </div>
+            <div class="social-item">
+              <a href="#"><img src="https://img.icons8.com/bubbles/452/twitter-circled.png" /></a>
+            </div>
+            <div class="social-item">
+              <a href="#"><img src="https://img.icons8.com/bubbles/344/whatsapp.png" /></a>
+            </div>
+          </div> -->
           
           <p style="margin-top:60px;">
                     Copyright © 2022 KWC-JOBS. All rights reserved

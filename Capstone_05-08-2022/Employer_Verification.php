@@ -1,34 +1,20 @@
-   <?php
-   session_start();
-   ?>
 <?php
-   if(isset($_POST['submit'])){
-   $username= $_POST['username'];
-   $password= $_POST['password'];
-   $psw= md5($password);
-   if(empty($usrename) && empty($password))
-   {
-      echo '<script>alert("Please enter Both the fields")</script>';
-   }
-   else{
-      
-      include "mysqli_connect.php";
-      $query="SELECT * from kwcj_employer_registration where Username='$username' AND Password='$psw'";
-      $result= mysqli_query($xyz,$query);
-   
-      if(mysqli_num_rows($result)==1){
-            header('location:Employer_Profile.php');
-   
-      }
-      
-      else{
+session_start();
+include "mysqli_connect.php";
+if(isset($_POST['submit']))
+{
+$email=$_POST['username'];
+$sql = mysqli_query($xyz,"SELECT * from kwcj_employer_registration where username='".$email."'");
+	if(mysqli_num_rows($sql)==1)
+	{
+		header('location:Employer_Reset_Password.php?username='.$email);
+	}
+	else {
           $Error= "<h2>Incorrect account information. Please try again!</h2>"; 
-         
-      }
-      }
-      
-   }
-   ?>
+	}
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
   <!-- Head -->
@@ -38,11 +24,11 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <!-- <link rel="stylesheet" href="./style1.css"> -->
     <link rel="icon" type="image/ico" href="images/favicon.png" />
-    <title>Employee Login Page</title>
+    <title>Username Verification</title>
   </head>
   <body>
-  <!-- Header -->
-  <section id="header">
+ <!-- Header -->
+ <section id="header">
       <div class="header container">
         <div class="nav-bar">
           <div class="brand">
@@ -70,40 +56,27 @@
       </div>
     </section>
     <main>
-      <form id="form1" method="POST" name="form"  action="employee_login_page.php" >
+      <form id="form1" method="POST" name="form"  action="" >
         <fieldset>
-          <legend>Employee Login Form</legend>
+          <legend>Username Verification</legend>
           <div id="signin">
-
-         
-            <label for="myEmail" class="email">Username:</label>
+            <label for="username" class="username">Username:</label>
             <input
               type="text"
               name="username"
-              id="myEmail"
-              class="inputbox email"
-              required
-              value="<?php if (isset($username)) echo $username; ?>"
-            />
-            <!-- <span class="error"><?php if (isset($usernameError)) echo $usernameError ?></span><br><br> -->
-            <label for="password" class="password">Password:</label>
-            <input
-              type="password"
-              name="password"
               id="pwd"
               class="inputbox password"
-              required
-              value="<?php if (isset($password)) echo $password; ?>"
-              /><br><br>
-              <span style="color:red;"><?php if (isset($Error)) echo $Error ?></span>
-            <p>New user? <a href="#form2"> Register</a></p>
-            <p><a onclick="location='Employer_Verification.php'"> Forgot Password ? </a></p>
+              required />
+              <br><br>
+                      <span style="color:red;"><?php if (isset($Error)) echo $Error ?></span>
+
           </div>
         </fieldset>
         <div class="buttons">
-          <input type="submit" value="Submit" name="submit" class="press" id="submit1" />
-          <input type="submit" value="Reset" class="press" id="reset2" />
+        <input type="submit" value="CONTINUE" class="press" name="submit" id="submit1" />
+
         </div>
+
       </form>
 
      
@@ -133,6 +106,7 @@
           <div class="brand">
             <h2><span>C</span>ONNECT WITH <span>U</span>S</h2><br>
           </div>
+          
           
           <p style="margin-top:60px;">
                     Copyright © 2022 KWC-JOBS. All rights reserved
