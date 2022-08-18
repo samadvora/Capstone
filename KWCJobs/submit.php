@@ -13,7 +13,7 @@
       <div class="header container">
         <div class="nav-bar">
           <div class="brand">
-            <a href="index.html">
+            <a href="Index.php">
               <h1 style="
     font-size: 3rem;
     text-transform: uppercase;

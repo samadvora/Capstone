@@ -17,7 +17,7 @@
       $result= mysqli_query($xyz,$query);
    
       if(mysqli_num_rows($result)==1){
-            header('location:Employer_Profile.php');
+            header('location:Employer_home.php');
    
       }
       
@@ -36,9 +36,48 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <!-- <link rel="stylesheet" href="./style1.css"> -->
-    <link rel="icon" type="image/ico" href="images/favicon.png" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                <link rel="icon" type="image/ico" href="images/favicon.png" />
     <title>Employee Login Page</title>
+     <style>
+    .fa {
+      padding: 10px;
+      font-size: 20px;
+      width: 18%;
+      height:55%;
+      text-align: center;
+      text-decoration: none;
+      margin: 12px 5px;
+      border-radius: 50%;
+    }
+
+    .fa:hover {
+        opacity: 0.7;
+    }
+
+    .fa-facebook {
+      background: #3B5998;
+      color: white;
+    }
+
+    .fa-twitter {
+      background: #55ACEE;
+      color: white;
+    }
+
+
+    .fa-linkedin {
+      background: #007bb5;
+      color: white;
+    }
+
+    .fa-youtube {
+      background: #bb0000;
+      color: white;
+    }
+
+
+    </style>
   </head>
   <body>
   <!-- Header -->
@@ -46,7 +85,7 @@
       <div class="header container">
         <div class="nav-bar">
           <div class="brand">
-            <a href="index.html">
+            <a href="Index.php">
               <h1 style="
     font-size: 3rem;
     text-transform: uppercase;
@@ -58,12 +97,9 @@
               <div class="bar"></div>
             </div>
             <ul>
-              <li><a href="index.html" class="current-page">Home</a></li>
-              <li><a href="news.php">Profile</a></li>
-              <li><a href="schedule.php">Job Posts</a></li>
-              <li><a href="rankings.php">Applied Jobs</a></li>
-              <li><a href="login.php">About</a></li>
-              <li><a href="login.php">Contact Us</a></li>
+              <li><a href="Index.php" class="current-page">Home</a></li>
+                  <li><a href="about.php">About</a></li>
+                  <li><a href="contact.php">Contact Us</a></li>
             </ul>
           </div>
         </div>
@@ -96,7 +132,7 @@
               value="<?php if (isset($password)) echo $password; ?>"
               /><br><br>
               <span style="color:red;"><?php if (isset($Error)) echo $Error ?></span>
-            <p>New user? <a href="#form2"> Register</a></p>
+            <p>New user? <a href="employer_registration.php"> Register</a></p>
             <p><a onclick="location='Employer_Verification.php'"> Forgot Password ? </a></p>
           </div>
         </fieldset>
@@ -133,7 +169,13 @@
           <div class="brand">
             <h2><span>C</span>ONNECT WITH <span>U</span>S</h2><br>
           </div>
-          
+          <div class="social-icon">
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-twitter"></a>
+                <a href="#" class="fa fa-linkedin"></a>
+                <a href="#" class="fa fa-youtube"></a>
+
+                </div>
           <p style="margin-top:60px;">
                     Copyright © 2022 KWC-JOBS. All rights reserved
                   </p>

@@ -7,6 +7,7 @@
             <link rel="stylesheet" type="text/css" href="./style.css" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
             <link rel="icon" type="image/ico" href="images/favicon.png" />
+
             <title>About</title>
             <style>
               #bannerimage {
@@ -63,7 +64,7 @@
           <div class="header container">
             <div class="nav-bar">
               <div class="brand">
-                <a href="index.html">
+                <a href="Index.php">
                   <h1 style="font-size: 3rem;text-transform: uppercase;color: white;"><span style="color:#00b1e5;">K</span>WC <span style="color:#00b1e5;">J</span>OBS</h1>
                 </a>
               </div>
@@ -72,11 +73,8 @@
                   <div class="bar"></div>
                 </div>
                 <ul>
-                  <li><a href="index.html" class="current-page">Home</a></li>
-                  <li><a href="news.php">Profile</a></li>
-                  <li><a href="schedule.php">Job Posts</a></li>
-                  <li><a href="rankings.php">Applied Jobs</a></li>
-                  <li><a href="login.php">About</a></li>
+                  <li><a href="Index.php" class="current-page">Home</a></li>
+                  <li><a href="about.php">About</a></li>
                   <li><a href="contact.php">Contact Us</a></li>
                 </ul>
               </div>
@@ -221,21 +219,6 @@
                 <div class="brand">
                   <h2><span>C</span>ONNECT WITH <span>U</span>S</h2><br>
                 </div>
-                <!-- <div class="social-icon">
-                  <div class="social-item">
-                    <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/facebook-new.png" /></a>
-                  </div>
-                  <div class="social-item">
-                    <a href="#"><img src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" /></a>
-                  </div>
-                  <div class="social-item">
-                    <a href="#"><img src="https://img.icons8.com/bubbles/452/twitter-circled.png" /></a>
-                  </div>
-                  <div class="social-item">
-                    <a href="#"><img src="https://img.icons8.com/bubbles/344/whatsapp.png" /></a>
-                  </div>
-                </div>
-                -->
                 <div class="social-icon">
                 <a href="#" class="fa fa-facebook"></a>
                 <a href="#" class="fa fa-twitter"></a>
